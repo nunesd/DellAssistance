@@ -2,10 +2,30 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { root } from '../../utils/Trees'
-import Leds from '../../components/Leds'
 
+const ledsData = [
+	{title: 'Placa-mãe com defeito'},
+	{title: 'Placa-mãe, fonte de alimentação ou cabeamento com defeito'},
+	{title: 'Placa-mãe, memória/RAM ou CPU com defeito'},
+	{title: 'Bateria de célula tipo moeda com defeito'},
+	{title: 'Erro na CPU'},
+	{title: 'Motherboard (Placa-mãe): Falha da ROM BIOS'},
+	{title: 'Nenhuma memória/RAM detectada'},
+	{title: 'Falha de memória/RAM'},
+	{title: 'Memória invalida instalada'},
+	{title: 'Erro na placa-mãe/chipset'},
+	{title: 'Falha do LCD'},
+	{title: 'Erro na bateria CMOS'},
+	{title: 'Falha em PCI ou placa de vídeo/chip'},
+]
 const handleOnClick = (choice, answer) => {
-	if(answer.multi && choice === 2) {
+	if(answer.GIF) {
+		return {
+			title: ledsData[choice].title,
+			data: [],
+			end: true
+		}
+	} else if(answer.multi && choice === 2) {
 		return answer.c3
 	} else if (choice === 1) {
 		return answer.c2
@@ -35,19 +55,19 @@ const Index = props => {
 					</div>
 				) : (
 					<Fragment>
-						<h1>{answer.title}</h1>
+						<h1 style={{color: answer.end && !answer.GIF ? '#45a577' : '#333'}}>{answer.title}</h1>
 						<div className="buttons">
 							{
 								answer.data.map((elem, index) => (
-									<button onClick={() => setAnswer(handleOnClick(index, answer))}>
+									<button onClick={() => setAnswer(handleOnClick(index, answer))} key={index} style={{margin: '5px', padding: '5px', background: '#ccc', borderRadius: '3px', outline: 'none'}}>
 										{elem}
 									</button>
 								))
 							}
 							{
-								answer.end && (
+								answer.end &&	!answer.GIF && (
 									<div> 
-										<button onClick={() => setIsEnd(true)}>Encerrar diagnóstico</button>
+										<button onClick={() => setIsEnd(true)} style={{margin: '5px', padding: '5px', background: '#ccc', borderRadius: '3px', outline: 'none'}}>Encerrar diagnóstico</button>
 									</div>
 								)
 							}

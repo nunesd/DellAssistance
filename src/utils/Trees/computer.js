@@ -1,5 +1,6 @@
 import React from 'react';
 import { monitor } from './monitor'
+import LED from '../../components/Leds/LED';
 const defaultAnswer = ['Sim', 'Não'];
 
 export const computer = {
@@ -46,7 +47,21 @@ export const computer = {
 			data: defaultAnswer,
 			c1: {
 				title: 'Identifique dentre as opções a que mais se assemelha ao padrão do seu notebook:',
-				data: '', //TODO: criar componentes com imagem e texto
+				data: [
+					<LED title='Placa-mãe com defeito' src="../../assets/Leds/1_1.gif" key="1" />,
+					<LED title='Placa-mãe, fonte de alimentação ou cabeamento com defeito' src="../../assets/Leds/1_2.gif" key="2" />,
+					<LED title='Placa-mãe, memória/RAM ou CPU com defeito' src="../../assets/Leds/1_4.gif" key="3" />,
+					<LED title='Bateria de célula tipo moeda com defeito' src="../../assets/Leds/1_4.gif" key="4" />,
+					<LED title='Erro na CPU' src="../../assets/Leds/2_1.gif" key="5" />,
+					<LED title='Motherboard (Placa-mãe): Falha da ROM BIOS' src="../../assets/Leds/2_2.gif" key="6" />,
+					<LED title='Nenhuma memória/RAM detectada' src="../../assets/Leds/2_3.gif" key="7" />,
+					<LED title='Falha de memória/RAM' src="../../assets/Leds/2_4.gif" key="8" />,
+					<LED title='Memória invalida instalada' src="../../assets/Leds/2_5.gif" key="9" />,
+					<LED title='Erro na placa-mãe/chipset' src="../../assets/Leds/2_6.gif" key="10" />,
+					<LED title='Falha do LCD' src="../../assets/Leds/2_7.gif" key="11" />,
+					<LED title='Erro na bateria CMOS' src="../../assets/Leds/3_2.gif" key="12" />,
+					<LED title='Falha em PCI ou placa de vídeo/chip' src="../../assets/Leds/3_3.gif" key="12" />,
+				],
 				GIF: true,
 				end: true
 			}
